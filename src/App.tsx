@@ -1,4 +1,5 @@
 import './App.css';
+import { Header } from './components/header/Header';
 import { useCollection } from './firebase/hooks/useCollection';
 
 function App() {
@@ -6,7 +7,11 @@ function App() {
 
   console.log(data);
 
-  return <div className="App"></div>;
+  return (
+    <div className="app">
+      <Header />
+    </div>
+  );
 }
 
 export default App;
