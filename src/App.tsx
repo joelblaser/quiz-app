@@ -1,5 +1,5 @@
 import './App.css';
-import { Header } from './components/header/Header';
+import { ContentLayout } from './components/content-layout/ContentLayout';
 import { useCollection } from './firebase/hooks/useCollection';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="app">
-      <Header />
+      <ContentLayout />
     </div>
   );
 }
