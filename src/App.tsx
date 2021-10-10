@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { ContentLayout } from './components/content-layout/ContentLayout';
 import { useCollection } from './firebase/hooks/useCollection';
 
