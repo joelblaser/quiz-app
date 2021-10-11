@@ -1,0 +1,20 @@
+.page-login {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  .login-card {
+    margin-top: 50px;
+    width: 300px;
+    padding: 50px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    form * {
+      margin: 5px 0;
+    }
+  }
+}
