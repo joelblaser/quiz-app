@@ -1,21 +1,15 @@
 import { useEffect, useState } from 'react';
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { collection, query } from 'firebase/firestore';
 import { firestore } from '../app.firebase';
+import { useQuery } from './useQuery';
 
 export function useCollection<T>(name: string) {
-  const [data, setData] = useState<T>([] as unknown as T);
+  const [q, setQuery] = useState(query(collection(firestore, name)));
+
+  const [data] = useQuery<T>(q);
 
   useEffect(() => {
-    const q = query(collection(firestore, name));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const docs: any[] = [];
-      snapshot.forEach((doc) => {
-        docs.push(doc.data());
-      });
-      setData(docs as unknown as T);
-    });
-
-    return unsubscribe;
+    setQuery(query(collection(firestore, name)));
   }, [name]);
 
   return [data] as [T];
