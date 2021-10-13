@@ -1,6 +1,11 @@
 import { useHistory } from 'react-router-dom';
 
-export function useRouter() {
+interface Router {
+  url: string;
+  navigate: (path: string) => void;
+}
+
+export function useRouter(): Router {
   const history = useHistory();
 
   const navigate = (path: string): void => {
@@ -9,5 +14,5 @@ export function useRouter() {
     }
   };
 
-  return { navigate };
+  return { url: history.location.pathname, navigate };
 }
