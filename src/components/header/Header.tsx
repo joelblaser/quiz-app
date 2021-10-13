@@ -2,15 +2,13 @@ import './Header.scss';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'src/hooks/useRouter';
 
 export function Header() {
-  const history = useHistory();
+  const router = useRouter();
 
   const goToLogin = () => {
-    if (history.location.pathname !== '/login') {
-      history.push('/login');
-    }
+    router.navigate('/login');
   };
 
   return (
