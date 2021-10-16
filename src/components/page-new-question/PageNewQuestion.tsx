@@ -1,3 +1,4 @@
+import { getAuth } from '@firebase/auth';
 import { doc, setDoc } from '@firebase/firestore';
 import { firestore } from 'src/firebase/app.firebase';
 import { useForm } from 'src/hooks/useForm';
@@ -5,6 +6,8 @@ import { Answer, Question } from 'src/models/question.model';
 import { v4 as uuidv4 } from 'uuid';
 
 export function PageNewQuestion() {
+  const auth = getAuth();
+
   const onSubmit = () => {
     const id = uuidv4();
     const newQuestion: Question = {
@@ -31,16 +34,38 @@ export function PageNewQuestion() {
     };
 
     console.log(newQuestion);
-    setDoc(doc(firestore, 'questions', id), newQuestion);
+    if (auth.currentUser?.email !== 'admin@quiz.ch') {
+      alert('Not authorized');
+      return;
+    }
+    setDoc(doc(firestore, 'questions', id), newQuestion).finally(() => {
+      clearQuestionForm();
+      ClearAnswer1Form();
+      ClearAnswer2Form();
+      ClearAnswer3Form();
+      ClearAnswer4Form();
+    });
   };
 
-  const [question, handleQuestionChange, handleQuestionSubmit] =
-    useForm<Question>(onSubmit);
+  const [
+    question,
+    handleQuestionChange,
+    handleQuestionSubmit,
+    clearQuestionForm,
+  ] = useForm<Question>(onSubmit);
 
-  const [answer1, handleAnswer1Change] = useForm<Answer>(onSubmit);
-  const [answer2, handleAnswer2Change] = useForm<Answer>(onSubmit);
-  const [answer3, handleAnswer3Change] = useForm<Answer>(onSubmit);
-  const [answer4, handleAnswer4Change] = useForm<Answer>(onSubmit);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [answer1, handleAnswer1Change, _1, ClearAnswer1Form] =
+    useForm<Answer>(onSubmit);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [answer2, handleAnswer2Change, _2, ClearAnswer2Form] =
+    useForm<Answer>(onSubmit);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [answer3, handleAnswer3Change, _3, ClearAnswer3Form] =
+    useForm<Answer>(onSubmit);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [answer4, handleAnswer4Change, _4, ClearAnswer4Form] =
+    useForm<Answer>(onSubmit);
 
   return (
     <form onSubmit={handleQuestionSubmit}>
