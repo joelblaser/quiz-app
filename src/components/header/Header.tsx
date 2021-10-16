@@ -25,7 +25,7 @@ export function Header() {
 
   const logout = () => {
     signOut(auth).then(() => {
-      router.navigate('/');
+      goToLogin();
     });
   };
 

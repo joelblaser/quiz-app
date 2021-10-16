@@ -1,8 +1,9 @@
 import './ContentLayout.scss';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 import { Header } from '../header/Header';
 import { PageLogin } from '../page-login/PageLogin';
 import { PageRegister } from '../page-register/PageRegister';
+import { PageHome } from '../page-home/PageHome';
 
 export function ContentLayout() {
   return (
@@ -10,6 +11,12 @@ export function ContentLayout() {
       <BrowserRouter>
         <Route path="/">
           <Header />
+        </Route>
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
+        <Route path="/home">
+          <PageHome />
         </Route>
         <Route path="/login">
           <PageLogin />

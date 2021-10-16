@@ -14,7 +14,7 @@ export function PageLogin() {
   const onLogin = () => {
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then(() => {
-        router.navigate('/');
+        router.navigate('/home');
       })
       .catch((err) => {
         console.log(err);
