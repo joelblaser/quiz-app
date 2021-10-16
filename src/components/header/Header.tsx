@@ -24,7 +24,12 @@ export function Header() {
 
   return (
     <div className="header">
-      <Typography variant="h5" component="div" className="title">
+      <Typography
+        fontWeight="bold"
+        variant="h5"
+        component="div"
+        className="title"
+      >
         Quiz App
       </Typography>
       {!user && (
