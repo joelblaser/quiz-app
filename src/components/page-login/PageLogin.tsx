@@ -5,19 +5,23 @@ import Button from '@mui/material/Button';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useForm } from 'src/hooks/useForm';
 import { Auth } from 'src/models/auth.model';
+import { useRouter } from 'src/hooks/useRouter';
 
 export function PageLogin() {
   const auth = getAuth();
+  const router = useRouter();
 
   const onLogin = () => {
     signInWithEmailAndPassword(auth, user.email, user.password)
-      .then((value) => {
-        console.log(value.user);
+      .then(() => {
+        router.navigate('/');
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        clearForm();
       });
-    clearForm();
   };
 
   const [user, handleChange, handleSubmit, clearForm] = useForm<Auth>(onLogin);

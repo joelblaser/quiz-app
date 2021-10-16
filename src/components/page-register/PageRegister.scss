@@ -1,0 +1,20 @@
+.page-register {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  .register-card {
+    margin-top: 50px;
+    width: 300px;
+    padding: 50px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    form * {
+      margin: 5px 0;
+    }
+  }
+}
