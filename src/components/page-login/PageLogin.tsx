@@ -2,17 +2,17 @@ import './PageLogin.scss';
 import Card from '@mui/material/Card';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useForm } from 'src/hooks/useForm';
-import { Auth } from 'src/models/auth.model';
+import { AuthRequest } from 'src/models/auth.model';
 import { useRouter } from 'src/hooks/useRouter';
+import { useAuth } from 'src/firebase/hooks/useAuth';
 
 export function PageLogin() {
-  const auth = getAuth();
+  const { login } = useAuth();
   const router = useRouter();
 
   const onLogin = () => {
-    signInWithEmailAndPassword(auth, user.email, user.password)
+    login(user)
       .then(() => {
         router.navigate('/home');
       })
@@ -24,7 +24,8 @@ export function PageLogin() {
       });
   };
 
-  const [user, handleChange, handleSubmit, clearForm] = useForm<Auth>(onLogin);
+  const [user, handleChange, handleSubmit, clearForm] =
+    useForm<AuthRequest>(onLogin);
 
   return (
     <div className="page-login">

@@ -1,18 +1,18 @@
 import './PageRegister.scss';
-import { createUserWithEmailAndPassword, getAuth } from '@firebase/auth';
 import { useForm } from 'src/hooks/useForm';
 import { useRouter } from 'src/hooks/useRouter';
-import { Auth } from 'src/models/auth.model';
+import { AuthRequest } from 'src/models/auth.model';
 import Card from '@mui/material/Card';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useAuth } from 'src/firebase/hooks/useAuth';
 
 export function PageRegister() {
-  const auth = getAuth();
+  const { register } = useAuth();
   const router = useRouter();
 
   const onRegister = () => {
-    createUserWithEmailAndPassword(auth, user.email, user.password)
+    register(user)
       .then(() => {
         router.navigate('/home');
       })
@@ -25,7 +25,7 @@ export function PageRegister() {
   };
 
   const [user, handleChange, handleSubmit, clearForm] =
-    useForm<Auth>(onRegister);
+    useForm<AuthRequest>(onRegister);
 
   return (
     <div className="page-register">

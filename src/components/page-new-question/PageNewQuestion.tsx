@@ -1,12 +1,12 @@
-import { getAuth } from '@firebase/auth';
 import { doc, setDoc } from '@firebase/firestore';
 import { firestore } from 'src/firebase/app.firebase';
+import { useAuth } from 'src/firebase/hooks/useAuth';
 import { useForm } from 'src/hooks/useForm';
 import { Answer, Question } from 'src/models/question.model';
 import { v4 as uuidv4 } from 'uuid';
 
 export function PageNewQuestion() {
-  const auth = getAuth();
+  const { user } = useAuth();
 
   const onSubmit = () => {
     const id = uuidv4();
@@ -34,7 +34,7 @@ export function PageNewQuestion() {
     };
 
     console.log(newQuestion);
-    if (auth.currentUser?.email !== 'admin@quiz.ch') {
+    if (user?.email !== 'admin@quiz.ch') {
       alert('Not authorized');
       return;
     }
