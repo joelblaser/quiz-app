@@ -6,8 +6,11 @@ import { PageRegister } from '../page-register/PageRegister';
 import { PageHome } from '../page-home/PageHome';
 import { PageNewQuestion } from '../page-new-question/PageNewQuestion';
 import { PageQuiz } from '../page-quiz/PageQuiz';
+import { useAuth } from 'src/firebase/hooks/useAuth';
 
 export function ContentLayout() {
+  const { user } = useAuth();
+
   return (
     <div className="content">
       <BrowserRouter>
@@ -18,13 +21,13 @@ export function ContentLayout() {
           <Redirect to="/home" />
         </Route>
         <Route path="/home">
-          <PageHome />
+          {user ? <PageHome /> : <Redirect to="/login" />}
         </Route>
         <Route path="/login">
-          <PageLogin />
+          {user ? <Redirect to="/home" /> : <PageLogin />}
         </Route>
         <Route path="/register">
-          <PageRegister />
+          {user ? <Redirect to="/home" /> : <PageRegister />}
         </Route>
         <Route path="/quiz">
           <PageQuiz />
