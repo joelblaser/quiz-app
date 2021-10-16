@@ -1,8 +1,8 @@
 import './ContentLayout.scss';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Header } from '../header/Header';
-import { SignUp } from '../sign-up/SignUp';
 import { PageLogin } from '../page-login/PageLogin';
+import { PageRegister } from '../page-register/PageRegister';
 
 export function ContentLayout() {
   return (
@@ -15,7 +15,7 @@ export function ContentLayout() {
           <PageLogin />
         </Route>
         <Route path="/register">
-          <SignUp />
+          <PageRegister />
         </Route>
       </BrowserRouter>
     </div>
