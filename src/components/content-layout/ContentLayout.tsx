@@ -4,6 +4,7 @@ import { Header } from '../header/Header';
 import { PageLogin } from '../page-login/PageLogin';
 import { PageRegister } from '../page-register/PageRegister';
 import { PageHome } from '../page-home/PageHome';
+import { PageNewQuestion } from '../page-new-question/PageNewQuestion';
 
 export function ContentLayout() {
   return (
@@ -23,6 +24,9 @@ export function ContentLayout() {
         </Route>
         <Route path="/register">
           <PageRegister />
+        </Route>
+        <Route path="/questions/new">
+          <PageNewQuestion />
         </Route>
       </BrowserRouter>
     </div>
