@@ -28,6 +28,12 @@ export function PageQuiz() {
           .slice(0, 10);
       })
       .then((questions) => {
+        return questions.map<Question>((question) => ({
+          ...question,
+          answers: question.answers.sort(() => 0.5 - Math.random()),
+        }));
+      })
+      .then((questions) => {
         setQuizQuestions(questions);
       });
   }, []);
