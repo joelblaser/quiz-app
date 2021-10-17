@@ -1,5 +1,5 @@
 import './PageQuiz.scss';
-import { collection, getDocs, query, where } from '@firebase/firestore';
+import { collection, getDocs, query } from '@firebase/firestore';
 import { useEffect, useState } from 'react';
 import { firestore } from 'src/firebase/app.firebase';
 import { Question } from 'src/models/question.model';
@@ -20,22 +20,12 @@ export function PageQuiz() {
   };
 
   useEffect(() => {
-    const questionsRef = collection(firestore, 'questions');
-    getDocs(query(questionsRef))
+    getDocs(query(collection(firestore, 'questions')))
       .then((snapshot) => {
         return snapshot.docs
-          .map((doc) => (doc.data() as Question).id)
+          .map((doc) => doc.data() as Question)
           .sort(() => 0.5 - Math.random())
           .slice(0, 10);
-      })
-      .then((ids) => {
-        return getDocs(query(questionsRef, where('id', 'in', ids))).then(
-          (snapshot) => {
-            return snapshot.docs
-              .map((doc) => doc.data() as Question)
-              .sort(() => 0.5 - Math.random());
-          }
-        );
       })
       .then((questions) => {
         setQuizQuestions(questions);
