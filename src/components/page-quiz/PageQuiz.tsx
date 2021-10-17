@@ -5,6 +5,7 @@ import { firestore } from 'src/firebase/app.firebase';
 import { Question } from 'src/models/question.model';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
+import { AnswerButton } from './answer-button/AnswerButton';
 
 export function PageQuiz() {
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
@@ -45,6 +46,12 @@ export function PageQuiz() {
         <Button variant="contained" onClick={nextQuestion}>
           Next question
         </Button>
+        <div className="answers-grid">
+          <AnswerButton answer={quizQuestions[currentQuestion]?.answers[0]} />
+          <AnswerButton answer={quizQuestions[currentQuestion]?.answers[1]} />
+          <AnswerButton answer={quizQuestions[currentQuestion]?.answers[2]} />
+          <AnswerButton answer={quizQuestions[currentQuestion]?.answers[3]} />
+        </div>
       </Card>
     </div>
   );

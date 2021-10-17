@@ -5,5 +5,5 @@ interface Props {
 }
 
 export function AnswerButton({ answer }: Props) {
-  return <div>{answer.text}</div>;
+  return <div>{answer?.text}</div>;
 }
