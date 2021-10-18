@@ -2,7 +2,7 @@ import './PageQuiz.scss';
 import { collection, getDocs, query } from '@firebase/firestore';
 import { useEffect, useState } from 'react';
 import { firestore } from 'src/firebase/app.firebase';
-import { Question } from 'src/models/question.model';
+import { Answer, Question } from 'src/models/question.model';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import { AnswerButton } from './answer-button/AnswerButton';
@@ -39,6 +39,8 @@ export function PageQuiz() {
       });
   }, []);
 
+  const onAnswerClick = (answer: Answer) => {};
+
   return (
     <div className="page-login">
       <Card className="question-card">
@@ -47,10 +49,9 @@ export function PageQuiz() {
           Next question
         </Button>
         <div className="answers-grid">
-          <AnswerButton answer={quizQuestions[currentQuestion]?.answers[0]} />
-          <AnswerButton answer={quizQuestions[currentQuestion]?.answers[1]} />
-          <AnswerButton answer={quizQuestions[currentQuestion]?.answers[2]} />
-          <AnswerButton answer={quizQuestions[currentQuestion]?.answers[3]} />
+          {quizQuestions[currentQuestion]?.answers.map((answer, index) => (
+            <AnswerButton key={index} answer={answer} onClick={onAnswerClick} />
+          ))}
         </div>
       </Card>
     </div>
