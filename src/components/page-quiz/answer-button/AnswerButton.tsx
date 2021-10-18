@@ -1,3 +1,4 @@
+import './AnswerButton.scss';
 import { Answer } from 'src/models/question.model';
 
 interface Props {
@@ -6,5 +7,5 @@ interface Props {
 }
 
 export function AnswerButton({ answer, onClick }: Props) {
-  return <button>{answer.text}</button>;
+  return <button className="answer-button">{answer.text}</button>;
 }
