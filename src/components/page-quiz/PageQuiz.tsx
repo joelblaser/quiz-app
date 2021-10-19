@@ -6,6 +6,7 @@ import { Answer, Question } from 'src/models/question.model';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import { AnswerButton } from './answer-button/AnswerButton';
+import Typography from '@mui/material/Typography';
 
 export function PageQuiz() {
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
@@ -52,7 +53,14 @@ export function PageQuiz() {
   return (
     <div className="page-login">
       <Card className="question-card">
-        <p>{quizQuestions[currentQuestion]?.text}</p>
+        <Typography
+          fontWeight="bold"
+          variant="h6"
+          component="p"
+          className="question"
+        >
+          {quizQuestions[currentQuestion]?.text}
+        </Typography>
         <div className="answers-grid">
           {quizQuestions[currentQuestion]?.answers.map((answer, index) => (
             <AnswerButton key={index} answer={answer} onClick={onAnswerClick} />

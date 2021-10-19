@@ -8,6 +8,11 @@
     width: 50%;
     height: 50%;
 
+    .question {
+      margin: 30px 10px;
+      text-align: center;
+    }
+
     .answers-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
