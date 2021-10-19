@@ -63,7 +63,12 @@ export function PageQuiz() {
         </Typography>
         <div className="answers-grid">
           {quizQuestions[currentQuestion]?.answers.map((answer, index) => (
-            <AnswerButton key={index} answer={answer} onClick={onAnswerClick} />
+            <AnswerButton
+              key={index}
+              answer={answer}
+              onClick={onAnswerClick}
+              revealAnswer={revealAnswers}
+            />
           ))}
         </div>
         <Button
