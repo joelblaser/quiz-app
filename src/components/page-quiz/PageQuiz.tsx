@@ -53,6 +53,11 @@ export function PageQuiz() {
     <div className="page-login">
       <Card className="question-card">
         <p>{quizQuestions[currentQuestion]?.text}</p>
+        <div className="answers-grid">
+          {quizQuestions[currentQuestion]?.answers.map((answer, index) => (
+            <AnswerButton key={index} answer={answer} onClick={onAnswerClick} />
+          ))}
+        </div>
         <Button
           disabled={!revealAnswers}
           variant="contained"
@@ -60,11 +65,6 @@ export function PageQuiz() {
         >
           Next question
         </Button>
-        <div className="answers-grid">
-          {quizQuestions[currentQuestion]?.answers.map((answer, index) => (
-            <AnswerButton key={index} answer={answer} onClick={onAnswerClick} />
-          ))}
-        </div>
       </Card>
     </div>
   );
