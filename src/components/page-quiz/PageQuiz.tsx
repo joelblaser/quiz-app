@@ -10,10 +10,12 @@ import { AnswerButton } from './answer-button/AnswerButton';
 export function PageQuiz() {
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [revealAnswers, setRevealAnswers] = useState(false);
 
   const nextQuestion = () => {
     setCurrentQuestion((previous) => {
       if (previous < 9) {
+        setRevealAnswers(false);
         return previous + 1;
       }
       return previous;
@@ -39,13 +41,19 @@ export function PageQuiz() {
       });
   }, []);
 
-  const onAnswerClick = (answer: Answer) => {};
+  const onAnswerClick = (answer: Answer) => {
+    setRevealAnswers(true);
+  };
 
   return (
     <div className="page-login">
       <Card className="question-card">
         <p>{quizQuestions[currentQuestion]?.text}</p>
-        <Button variant="contained" onClick={nextQuestion}>
+        <Button
+          disabled={!revealAnswers}
+          variant="contained"
+          onClick={nextQuestion}
+        >
           Next question
         </Button>
         <div className="answers-grid">

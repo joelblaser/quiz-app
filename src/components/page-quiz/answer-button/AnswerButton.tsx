@@ -7,5 +7,13 @@ interface Props {
 }
 
 export function AnswerButton({ answer, onClick }: Props) {
-  return <button className="answer-button">{answer.text}</button>;
+  const onAnswerClick = () => {
+    onClick(answer);
+  };
+
+  return (
+    <button className="answer-button" onClick={onAnswerClick}>
+      {answer.text}
+    </button>
+  );
 }
