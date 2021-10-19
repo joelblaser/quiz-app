@@ -11,6 +11,7 @@ export function PageQuiz() {
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [revealAnswers, setRevealAnswers] = useState(false);
+  const [correctQuestions, setCorrectQuestions] = useState(0);
 
   const nextQuestion = () => {
     setCurrentQuestion((previous) => {
@@ -43,6 +44,9 @@ export function PageQuiz() {
 
   const onAnswerClick = (answer: Answer) => {
     setRevealAnswers(true);
+    if (answer.isCorrect) {
+      setCorrectQuestions((prev) => prev + 1);
+    }
   };
 
   return (
