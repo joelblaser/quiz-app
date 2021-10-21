@@ -53,7 +53,11 @@ export function PageQuiz() {
 
   return (
     <div className="page-login">
-      <Sidebar title="Test" />
+      <Sidebar
+        currentQuestion={currentQuestion}
+        amountOfQuestions={quizQuestions.length}
+        correctQuestions={correctQuestions}
+      />
       <div className="card-container">
         <Card className="question-card">
           <Typography
