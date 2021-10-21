@@ -1,23 +1,30 @@
 .page-login {
   height: calc(100% - 60px);
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
 
-  .question-card {
-    width: 50%;
-    height: 50%;
+  .card-container {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    .question {
-      margin: 30px 10px;
-      text-align: center;
-    }
+    .question-card {
+      width: 70%;
+      height: 50%;
 
-    .answers-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 10px;
-      margin: 10px;
+      .question {
+        margin: 30px 10px;
+        text-align: center;
+      }
+
+      .answers-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+        margin: 10px;
+      }
     }
   }
 }

@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import { AnswerButton } from './answer-button/AnswerButton';
 import Typography from '@mui/material/Typography';
+import { Sidebar } from './sidebar/Sidebar';
 
 export function PageQuiz() {
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
@@ -52,33 +53,36 @@ export function PageQuiz() {
 
   return (
     <div className="page-login">
-      <Card className="question-card">
-        <Typography
-          fontWeight="bold"
-          variant="h6"
-          component="p"
-          className="question"
-        >
-          {quizQuestions[currentQuestion]?.text}
-        </Typography>
-        <div className="answers-grid">
-          {quizQuestions[currentQuestion]?.answers.map((answer, index) => (
-            <AnswerButton
-              key={index}
-              answer={answer}
-              onClick={onAnswerClick}
-              revealAnswer={revealAnswers}
-            />
-          ))}
-        </div>
-        <Button
-          disabled={!revealAnswers}
-          variant="contained"
-          onClick={nextQuestion}
-        >
-          Next question
-        </Button>
-      </Card>
+      <Sidebar title="Test" />
+      <div className="card-container">
+        <Card className="question-card">
+          <Typography
+            fontWeight="bold"
+            variant="h6"
+            component="p"
+            className="question"
+          >
+            {quizQuestions[currentQuestion]?.text}
+          </Typography>
+          <div className="answers-grid">
+            {quizQuestions[currentQuestion]?.answers.map((answer, index) => (
+              <AnswerButton
+                key={index}
+                answer={answer}
+                onClick={onAnswerClick}
+                revealAnswer={revealAnswers}
+              />
+            ))}
+          </div>
+          <Button
+            disabled={!revealAnswers}
+            variant="contained"
+            onClick={nextQuestion}
+          >
+            Next question
+          </Button>
+        </Card>
+      </div>
     </div>
   );
 }

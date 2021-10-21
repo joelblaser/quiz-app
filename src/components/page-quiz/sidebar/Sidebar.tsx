@@ -1,3 +1,4 @@
+import './Sidebar.scss';
 import Typography from '@mui/material/Typography';
 
 interface Props {
