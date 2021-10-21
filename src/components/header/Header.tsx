@@ -8,6 +8,10 @@ export function Header() {
   const { user, logout } = useAuth();
   const router = useRouter();
 
+  const goToHome = () => {
+    router.navigate('/home');
+  };
+
   const goToLogin = () => {
     router.navigate('/login');
   };
@@ -29,6 +33,7 @@ export function Header() {
         variant="h5"
         component="div"
         className="title"
+        onClick={goToHome}
       >
         Quiz App
       </Typography>
