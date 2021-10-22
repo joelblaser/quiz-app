@@ -78,13 +78,15 @@ export function PageQuiz() {
               />
             ))}
           </div>
-          <Button
-            disabled={!revealAnswers}
-            variant="contained"
-            onClick={nextQuestion}
-          >
-            Next question
-          </Button>
+          <div className="card-footer">
+            <Button
+              disabled={!revealAnswers}
+              variant="contained"
+              onClick={nextQuestion}
+            >
+              Next question
+            </Button>
+          </div>
         </Card>
       </div>
     </div>
