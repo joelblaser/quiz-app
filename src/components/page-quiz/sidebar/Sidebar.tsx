@@ -10,7 +10,12 @@ interface Props {
 export function Sidebar({ currentQuestion, amountOfQuestions }: Props) {
   return (
     <div className="sidebar">
-      <Typography fontWeight="bold" variant="h6" component="p">
+      <Typography
+        fontWeight="bold"
+        variant="h6"
+        component="p"
+        className="current-question"
+      >
         {`Question ${currentQuestion + 1} of ${amountOfQuestions}`}
       </Typography>
     </div>
