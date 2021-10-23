@@ -7,6 +7,7 @@ import { PageHome } from '../page-home/PageHome';
 import { PageNewQuestion } from '../page-new-question/PageNewQuestion';
 import { PageQuiz } from '../page-quiz/PageQuiz';
 import { useAuth } from 'src/firebase/hooks/useAuth';
+import { PageResults } from '../page-results/PageResults';
 
 export function ContentLayout() {
   const { user } = useAuth();
@@ -29,8 +30,11 @@ export function ContentLayout() {
         <Route path="/register">
           {user ? <Redirect to="/home" /> : <PageRegister />}
         </Route>
-        <Route path="/quiz">
+        <Route exact path="/quiz">
           <PageQuiz />
+        </Route>
+        <Route path="/quiz/results/:resultId">
+          <PageResults />
         </Route>
         <Route path="/questions/new">
           <PageNewQuestion />
