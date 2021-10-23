@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import { AnswerButton } from './answer-button/AnswerButton';
 import Typography from '@mui/material/Typography';
-import { Sidebar } from './sidebar/Sidebar';
 
 export function PageQuiz() {
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
@@ -53,32 +52,29 @@ export function PageQuiz() {
 
   return (
     <div className="page-login">
-      <Sidebar
-        currentQuestion={currentQuestion}
-        amountOfQuestions={quizQuestions.length}
-        correctQuestions={correctQuestions}
-      />
-      <div className="card-container">
-        <Card className="question-card">
-          <Typography
-            fontWeight="bold"
-            variant="h6"
-            component="p"
-            className="question"
-          >
-            {quizQuestions[currentQuestion]?.text}
-          </Typography>
-          <div className="answers-grid">
-            {quizQuestions[currentQuestion]?.answers.map((answer, index) => (
-              <AnswerButton
-                key={index}
-                answer={answer}
-                onClick={onAnswerClick}
-                revealAnswer={revealAnswers}
-              />
-            ))}
-          </div>
-          <div className="card-footer">
+      <Card className="question-card">
+        <Typography
+          fontWeight="bold"
+          variant="h6"
+          component="p"
+          className="question"
+        >
+          {quizQuestions[currentQuestion]?.text}
+        </Typography>
+        <div className="answers-grid">
+          {quizQuestions[currentQuestion]?.answers.map((answer, index) => (
+            <AnswerButton
+              key={index}
+              answer={answer}
+              onClick={onAnswerClick}
+              revealAnswer={revealAnswers}
+            />
+          ))}
+        </div>
+        <div className="card-footer">
+          {currentQuestion === 9 && revealAnswers ? (
+            <Button variant="contained">Show Result</Button>
+          ) : (
             <Button
               disabled={!revealAnswers}
               variant="contained"
@@ -86,9 +82,9 @@ export function PageQuiz() {
             >
               Next question
             </Button>
-          </div>
-        </Card>
-      </div>
+          )}
+        </div>
+      </Card>
     </div>
   );
 }
