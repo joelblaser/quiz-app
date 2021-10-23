@@ -13,7 +13,9 @@ interface Props {
 
 export function AnswerButton({ answer, onClick, revealAnswer }: Props) {
   const onAnswerClick = () => {
-    onClick(answer);
+    if (!revealAnswer) {
+      onClick(answer);
+    }
   };
 
   const color = revealAnswer ? (answer.isCorrect ? GREEN : RED) : BLUE;

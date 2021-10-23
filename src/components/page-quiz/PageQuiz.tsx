@@ -12,7 +12,7 @@ export function PageQuiz() {
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [revealAnswers, setRevealAnswers] = useState(false);
-  const [correctQuestions, setCorrectQuestions] = useState(0);
+  const [correctQuestions, setCorrectQuestions] = useState<boolean[]>([]);
 
   const nextQuestion = () => {
     setCurrentQuestion((previous) => {
@@ -45,9 +45,7 @@ export function PageQuiz() {
 
   const onAnswerClick = (answer: Answer) => {
     setRevealAnswers(true);
-    if (answer.isCorrect) {
-      setCorrectQuestions((prev) => prev + 1);
-    }
+    setCorrectQuestions((prev) => [...prev, answer.isCorrect]);
   };
 
   return (
@@ -73,7 +71,7 @@ export function PageQuiz() {
         </div>
         <div className="card-footer">
           {currentQuestion === 9 && revealAnswers ? (
-            <Button variant="contained">Show Result</Button>
+            <Button variant="contained">Show Results</Button>
           ) : (
             <Button
               disabled={!revealAnswers}
