@@ -7,10 +7,10 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import { AnswerButton } from './answer-button/AnswerButton';
 import Typography from '@mui/material/Typography';
-import { QuizResultRequest } from 'src/models/quiz.model';
 import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from 'src/firebase/hooks/useAuth';
 import { useRouter } from 'src/hooks/useRouter';
+import { QuizResult } from 'src/models/quiz.model';
 
 export function PageQuiz() {
   const { user } = useAuth();
@@ -57,11 +57,11 @@ export function PageQuiz() {
 
   const saveResults = () => {
     const id = uuidv4();
-    const result: QuizResultRequest = {
+    const result: QuizResult = {
       id: id,
       participantId: user.uid,
       questions: correctQuestions.map((correct, i) => ({
-        question: doc(firestore, 'questions', quizQuestions[i].id),
+        question: quizQuestions[i],
         correct: correct,
       })),
     };
