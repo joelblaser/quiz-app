@@ -2,6 +2,8 @@ import './PageResults.scss';
 import { useParams } from 'react-router-dom';
 import { useDoc } from 'src/firebase/hooks/useDoc';
 import { QuizResult } from 'src/models/quiz.model';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
 
 export function PageResults() {
   const { resultId } = useParams<{ resultId: string }>();
@@ -10,5 +12,13 @@ export function PageResults() {
 
   console.log(result);
 
-  return <div>PageResults</div>;
+  return (
+    <div className="page-results">
+      <Card className="result-card">
+        <Typography fontWeight="bold" variant="h5" component="p">
+          Quiz Result
+        </Typography>
+      </Card>
+    </div>
+  );
 }
