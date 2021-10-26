@@ -13,14 +13,26 @@ export function PageResults() {
   return (
     <div className="page-results">
       <Card className="result-card">
-        <Typography fontWeight="bold" variant="h5" component="p">
+        <Typography
+          fontWeight="bold"
+          variant="h5"
+          component="p"
+          className="title"
+        >
           Quiz Result
         </Typography>
         {result?.questions.map(({ question }, index) => (
-          <div key={index}>
+          <div key={index} className="question">
             <Typography fontWeight="bold" component="p">
               {question.text}
             </Typography>
+            <div className="answers">
+              {question.answers.map((answer, i) => (
+                <Typography key={i} component="p">
+                  {answer.text}
+                </Typography>
+              ))}
+            </div>
           </div>
         ))}
       </Card>
