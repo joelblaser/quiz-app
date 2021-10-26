@@ -10,6 +10,13 @@ export function PageResults() {
 
   const result = useDoc<QuizResult>('results', resultId);
 
+  const correctQuestions =
+    result?.questions
+      .map((q) => q.answered.isCorrect)
+      .reduce((sum, correct) => sum + (correct ? 1 : 0), 0) || 0;
+
+  console.log(correctQuestions);
+
   return (
     <div className="page-results">
       <Card className="result-card">

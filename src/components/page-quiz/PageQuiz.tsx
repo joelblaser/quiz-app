@@ -71,7 +71,7 @@ export function PageQuiz() {
   };
 
   return (
-    <div className="page-login">
+    <div className="page-quiz">
       <Card className="question-card">
         <Typography
           fontWeight="bold"
