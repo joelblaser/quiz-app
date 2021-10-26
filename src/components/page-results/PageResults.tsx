@@ -10,8 +10,6 @@ export function PageResults() {
 
   const result = useDoc<QuizResult>('results', resultId);
 
-  console.log(result);
-
   return (
     <div className="page-results">
       <Card className="result-card">
