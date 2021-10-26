@@ -19,7 +19,7 @@ export function PageQuiz() {
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [revealAnswers, setRevealAnswers] = useState(false);
-  const [correctQuestions, setCorrectQuestions] = useState<boolean[]>([]);
+  const [selectedAnswers, setSelectedAnswers] = useState<Answer[]>([]);
 
   const nextQuestion = () => {
     setCurrentQuestion((previous) => {
@@ -52,7 +52,7 @@ export function PageQuiz() {
 
   const onAnswerClick = (answer: Answer) => {
     setRevealAnswers(true);
-    setCorrectQuestions((prev) => [...prev, answer.isCorrect]);
+    setSelectedAnswers((prev) => [...prev, answer]);
   };
 
   const saveResults = () => {
@@ -60,9 +60,9 @@ export function PageQuiz() {
     const result: QuizResult = {
       id: id,
       participantId: user.uid,
-      questions: correctQuestions.map((correct, i) => ({
+      questions: selectedAnswers.map((answer, i) => ({
         question: quizQuestions[i],
-        correct: correct,
+        answered: answer,
       })),
     };
     setDoc(doc(firestore, 'results', id), result).then(() => {

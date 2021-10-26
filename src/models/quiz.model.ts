@@ -1,8 +1,8 @@
-import { Question } from './question.model';
+import { Answer, Question } from './question.model';
 
 export interface QuestionResult {
   question: Question;
-  correct: boolean;
+  answered: Answer;
 }
 
 export interface QuizResult {

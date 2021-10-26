@@ -18,6 +18,13 @@ export function PageResults() {
         <Typography fontWeight="bold" variant="h5" component="p">
           Quiz Result
         </Typography>
+        {result?.questions.map(({ question }, index) => (
+          <div key={index}>
+            <Typography fontWeight="bold" component="p">
+              {question.text}
+            </Typography>
+          </div>
+        ))}
       </Card>
     </div>
   );
