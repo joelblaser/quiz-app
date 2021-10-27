@@ -15,8 +15,6 @@ export function PageResults() {
       .map((q) => q.answered.isCorrect)
       .reduce((sum, correct) => sum + (correct ? 1 : 0), 0) || 0;
 
-  console.log(correctQuestions);
-
   return (
     <div className="page-results">
       <Card className="result-card">
@@ -26,7 +24,7 @@ export function PageResults() {
           component="p"
           className="title"
         >
-          Quiz Result
+          {`Quiz Result - ${correctQuestions} of 10 correct answered`}
         </Typography>
         {result?.questions.map(({ question }, index) => (
           <div key={index} className="question">
@@ -35,7 +33,11 @@ export function PageResults() {
             </Typography>
             <div className="answers">
               {question.answers.map((answer, i) => (
-                <Typography key={i} component="p">
+                <Typography
+                  key={i}
+                  component="p"
+                  style={{ fontWeight: answer.isCorrect ? 'bold' : 'normal' }}
+                >
                   {answer.text}
                 </Typography>
               ))}
